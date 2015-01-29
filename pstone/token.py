@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-
 from pstone.pstone_exception import PStoneException
 
 
