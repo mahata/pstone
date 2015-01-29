@@ -1,14 +1,18 @@
 #!/usr/bin/env python
 
 
+from pstone.pstone_exception import PStoneException
+
+
 class Token(object):
-    EOF = self.__init__(-1)
-    EOL = '\n'
 
     def __init__(self, line):
+        # EOF = self.__init__(-1)
+        EOL = '\n'
+
         self.lineNumber = line
 
-    def getLineNumber():
+    def getLineNumber(self):
         return self.lineNumber
 
     def isIdentifier(self):
