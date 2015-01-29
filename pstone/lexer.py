@@ -14,4 +14,4 @@ class Lexer(object):
             self.line = self.line[1:]
             return ret
         else:
-            return Token.EOF
+            return Token(-1)  # EOF
