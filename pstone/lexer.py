@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from pstone.token import Token
+import re
 
 
 class Lexer(object):
@@ -23,3 +24,6 @@ class Lexer(object):
             return self.line[0]
         else:
             return Token(-1)  # EOF
+
+    def _addToken(self):
+        pass
