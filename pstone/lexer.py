@@ -25,5 +25,32 @@ class Lexer(object):
         else:
             return Token(-1)  # EOF
 
-    def _addToken(self):
-        pass
+    def tokenize(self):  # Which is like `readLine()`
+        ignore = r"\s*(//.*)"
+        string = r'"(.+)"'  # ToDo - Fix Me: it's super naive ('\"' aren't allowed)
+        num = r"([0-9]+)"
+        identity = r"([a-z_A-Z][a-z_A-Z0-9]*)"
+        reserved = r"==|<=|>=|&&|\|\||{|}|<|>|\+|\-|\*|/|="
+
+        reg = re.search("|".join([ignore, string, num, identity, reserved]), source)
+
+        if reg is None:
+            break
+
+        if reg.group(1):
+            # print("*ignore*", reg.group(1))
+            pass
+        elif reg.group(2):
+            # print('string', reg.group(2))
+            self.queue.append(reg.group(2))
+        elif reg.group(3):
+            # print('integer', reg.group(3))
+            self.queue.append(reg.group(3))
+        elif reg.group(4):
+            # print('id', reg.group(4))
+            self.queue.append(reg.group(4))
+        else:
+            # print('others', reg.group(0))
+            self.queue.qppend(reg.group(0))
+
+        source = source[reg.end():]
