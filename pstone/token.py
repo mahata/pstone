@@ -4,7 +4,7 @@ from pstone.pstone_exception import PStoneException
 
 
 class Token(object):
-    EOL = '\n'
+    EOL = "\n"
 
     def __init__(self, line):
         self.lineNumber = line

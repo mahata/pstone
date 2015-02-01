@@ -35,7 +35,7 @@ class Lexer(object):
         reg = re.search("|".join([ignore, string, num, identity, reserved]), source)
 
         if reg is None:
-            break
+            return self.queue
 
         if reg.group(1):
             # print("*ignore*", reg.group(1))
