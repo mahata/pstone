@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from pstone.token import Token
+import pstone.token as token
 import re
 
 
@@ -17,14 +17,14 @@ class Lexer(object):
             self.line = self.line[1:]
             return ret
         else:
-            return Token(-1)  # EOF
+            return token.Token(-1)  # EOF
 
     def peek(self):
         pass
         if (0 < len(self.line)):
             return self.line[0]
         else:
-            return Token(-1)  # EOF
+            return token.Token(-1)  # EOF
 
     def _split2token(self, line):
         ignore = r"\s*(//.*)"
