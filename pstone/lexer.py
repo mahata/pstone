@@ -5,19 +5,11 @@ import re
 
 
 class Lexer(object):
-    def __init__(self):
+    def __init__(self, source):
         # self.hasMore = True
         self.queue = []
-        # self.lines = open("/etc/resolv.conf").read().split("\n")  # ToDo: Fix Me
-        self.lines = """
-        foo = "Hello, world"
-        // this line should be skipped
-        while i < 10 {
-            sum = sum + i
-            i = i + 1
-        }
-        sum
-        """.split("\n")
+        # self.lines = source.split("\n")
+        self.source = source
 
     def read(self):
         if (0 < len(self.line)):
@@ -41,7 +33,7 @@ class Lexer(object):
         identity = r"([a-z_A-Z][a-z_A-Z0-9]*)"
         reserved = r"==|<=|>=|&&|\|\||{|}|<|>|\+|\-|\*|/|="
 
-        reg = re.search("|".join([ignore, string, num, identity, reserved]), source)
+        reg = re.search("|".join([ignore, string, num, identity, reserved]), self.source)
 
         if reg is None:
             return self.queue
@@ -62,4 +54,4 @@ class Lexer(object):
             # print('others', reg.group(0))
             self.queue.qppend(reg.group(0))
 
-        source = source[reg.end():]
+        self.source = self.source[reg.end():]  # ToDo - Fix Me: source should be kept anywhere
