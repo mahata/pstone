@@ -16,4 +16,4 @@ if __name__ == "__main__":
 
     lexer = Lexer(snippet)
     tokens = lexer.tokenize()
-    # print(tokens)
+    print(tokens)

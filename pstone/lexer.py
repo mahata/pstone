@@ -8,8 +8,8 @@ class Lexer(object):
     def __init__(self, source):
         # self.hasMore = True
         self.queue = []
-        # self.lines = source.split("\n")
         self.source = source
+        self.lines = source.split("\n")
 
     def read(self):
         if (0 < len(self.line)):
@@ -26,17 +26,17 @@ class Lexer(object):
         else:
             return Token(-1)  # EOF
 
-    def tokenize(self):  # Which is like `readLine()`
+    def _split2token(self, line):
         ignore = r"\s*(//.*)"
         string = r'"(.+)"'  # ToDo - Fix Me: it's super naive ('\"' aren't allowed)
         num = r"([0-9]+)"
         identity = r"([a-z_A-Z][a-z_A-Z0-9]*)"
         reserved = r"==|<=|>=|&&|\|\||{|}|<|>|\+|\-|\*|/|="
 
-        reg = re.search("|".join([ignore, string, num, identity, reserved]), self.source)
+        reg = re.search("|".join([ignore, string, num, identity, reserved]), line)
 
         if reg is None:
-            return self.queue
+            return True
 
         if reg.group(1):
             # print("*ignore*", reg.group(1))
@@ -52,6 +52,13 @@ class Lexer(object):
             self.queue.append(reg.group(4))
         else:
             # print('others', reg.group(0))
-            self.queue.qppend(reg.group(0))
+            self.queue.append(reg.group(0))
 
-        self.source = self.source[reg.end():]  # ToDo - Fix Me: source should be kept anywhere
+        # line = self.source[line.end():]
+        return self._split2token(line[reg.end():])
+
+    def tokenize(self):  # Which is like `readLine()`
+        for line in self.lines:
+            self._split2token(line)
+
+        return self.queue
