@@ -39,25 +39,24 @@ class Lexer(object):
             return True
 
         if reg.group(1):
-            # print("*ignore*", reg.group(1))
+            # comment - ignore it!
             pass
         elif reg.group(2):
-            # print('string', reg.group(2))
-            self.queue.append(reg.group(2))
+            strToken = token.StrToken(reg.group(2))
+            strToken.setText(reg.group(2))
+            self.queue.append(strToken)
         elif reg.group(3):
-            # print('integer', reg.group(3))
-            self.queue.append(reg.group(3))
+            numToken = token.NumToken(reg.group(3))
+            self.queue.append(numToken)
         elif reg.group(4):
-            # print('id', reg.group(4))
-            self.queue.append(reg.group(4))
+            idToken = token.IdToken(reg.group(4))
+            self.queue.append(idToken)
         else:
-            # print('others', reg.group(0))
-            self.queue.append(reg.group(0))
+            self.queue.append(token.Token(reg.group(0)))
 
-        # line = self.source[line.end():]
         return self._split2token(line[reg.end():])
 
-    def tokenize(self):  # Which is like `readLine()`
+    def tokenize(self):
         for line in self.lines:
             self._split2token(line)
 
