@@ -8,7 +8,16 @@ class Lexer(object):
     def __init__(self):
         # self.hasMore = True
         self.queue = []
-        self.lines = open("/etc/resolv.conf").read().split("\n")  # ToDo: Fix Me
+        # self.lines = open("/etc/resolv.conf").read().split("\n")  # ToDo: Fix Me
+        self.lines = """
+        foo = "Hello, world"
+        // this line should be skipped
+        while i < 10 {
+            sum = sum + i
+            i = i + 1
+        }
+        sum
+        """.split("\n")
 
     def read(self):
         if (0 < len(self.line)):
