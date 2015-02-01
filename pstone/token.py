@@ -26,3 +26,18 @@ class Token(object):
 
     def getText(self):
         return ""
+
+
+class NumToken(Token):
+    def isNumber(self):
+        return True
+
+
+class StrToken(Token):
+    def isString(self):
+        return True
+
+
+class IdToken(Token):
+    def isIdentifier(self):
+        return True
