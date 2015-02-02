@@ -44,7 +44,7 @@ class StrToken(Token):
     def getText(self):
         return self.literal
 
-    def __unicode__(self):
+    def __str__(self):
         try:
             return self.literal
         except NameError:
