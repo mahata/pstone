@@ -2,7 +2,7 @@
 
 
 from pstone.parser import BasicParser
-
+from pstone.ast.ast import ASTree
 
 if __name__ == "__main__":
     snippet = """
