@@ -20,7 +20,29 @@ class ASTree(object):
 
 
 class ASTList(ASTree):
-    pass
+
+    def __init__(self, children):
+        self.children = children
+
+    def child(self, i):
+        self.children[i]
+
+    def numChildren(self):
+        return len(self.children)
+
+    def children(self):
+        return self.children
+
+    def location():
+        for astobj in self.children:
+            loc = asbobj.location()
+            if loc is None:
+                return loc
+
+        return None
+
+    def __str__(self):
+        return "Something S-exp like stuff"  # ToDo - Fix Me
 
 
 class ASTLeaf(ASTree):
