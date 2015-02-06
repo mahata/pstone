@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+from pstone.token import Token
+
 
 class Parser(object):
     pass
@@ -7,7 +9,12 @@ class Parser(object):
 
 class BasicParser(Parser):
     def __init__(self):
-        pass
+        self.reserved = set()
+        self.operators = Operators()
+
+        self.reserved.add(";")
+        self.reserved.add("}")
+        self.reserved.add(Token.EOL)
 
 
 class Operators(object):

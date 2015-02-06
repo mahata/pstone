@@ -15,4 +15,5 @@ if __name__ == "__main__":
         sum
     """
 
+    bp = BasicParser()
     print("Hello, world!")
