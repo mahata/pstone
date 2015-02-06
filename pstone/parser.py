@@ -16,6 +16,16 @@ class BasicParser(Parser):
         self.reserved.add("}")
         self.reserved.add(Token.EOL)
 
+        self.operators.add("=", 1, Operators.RIGHT)
+        self.operators.add("==", 2, Operators.LEFT)
+        self.operators.add(">", 2, Operators.LEFT)
+        self.operators.add("<", 2, Operators.LEFT)
+        self.operators.add("+", 3, Operators.LEFT)
+        self.operators.add("-", 3, Operators.LEFT)
+        self.operators.add("*", 4, Operators.LEFT)
+        self.operators.add("/", 4, Operators.LEFT)
+        self.operators.add("%", 4, Operators.LEFT)
+
 
 class Operators(object):
     LEFT = True
@@ -24,5 +34,5 @@ class Operators(object):
     def __init__(self):
         self.operators = {}
 
-    def add(name, prec, leftAssoc):
-        self.operators.append[name] = (prec, leftAssoc)
+    def add(self, name, prec, leftAssoc):
+        self.operators[name] = (prec, leftAssoc)
