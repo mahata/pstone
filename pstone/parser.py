@@ -4,7 +4,53 @@ from pstone.token import Token
 
 
 class Parser(object):
-    pass
+    def __init__(self):
+        pass
+
+    def rule(self):
+        pass
+
+    def match(self):
+        pass
+
+    def reset(self):
+        pass
+
+    def number(self):
+        pass
+
+    def identifier(self):
+        pass
+
+    def string(self):
+        pass
+
+    def token(self):
+        pass
+
+    def sep(self):
+        pass
+
+    def ast(self):
+        pass
+
+    def otherwise(self):  # Originally, it's "or" function
+        pass
+
+    def maybe(self):
+        pass
+
+    def option(self):
+        pass
+
+    def repeat(self):
+        pass
+
+    def expression(self):
+        pass
+
+    def insertChoice(self):
+        pass
 
 
 class BasicParser(object):
