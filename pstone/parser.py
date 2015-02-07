@@ -7,7 +7,7 @@ class Parser(object):
     pass
 
 
-class BasicParser(Parser):
+class BasicParser(object):
     def __init__(self):
         self.reserved = set()
         self.operators = Operators()
