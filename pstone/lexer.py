@@ -12,17 +12,16 @@ class Lexer(object):
         self.lines = source.split("\n")
 
     def read(self):
-        if (0 < len(self.line)):
-            ret = self.line[0]
-            self.line = self.line[1:]
+        if (0 < len(self.lines)):
+            ret = self.lines[0]
+            self.lines = self.lines[1:]
             return ret
         else:
             return token.Token(-1)  # EOF
 
-    def peek(self):
-        pass
-        if (0 < len(self.line)):
-            return self.line[0]
+    def peek(self, i):
+        if (i < len(self.lines)):
+            return self.lines[0:i+1]
         else:
             return token.Token(-1)  # EOF
 
