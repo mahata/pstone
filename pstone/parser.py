@@ -46,7 +46,20 @@ class Parser(object):
             self.parsers.insert(0, p)
 
     class Repeat(Element):
-        pass
+        def __init__(self, p, once):
+            self.parser = p
+            self.onlyOnce = once
+
+        def parse(self, lexer, res):
+            while self.parser.match(lexer):
+                t = self.parser.parse(lexer)
+                if t.__class__.__name__ != "ASTList" or 0 < t.numChildren():
+                    res.add(t)
+                if self.onlyOnce:
+                    break
+
+        def match(self, lexer):
+            return self.parser.match(lexer)
 
     class AToken(Element):  # Abstract
         pass
