@@ -22,7 +22,24 @@ class Parser(object):
             self.parser.match(lexer)
 
     class OrTree(Element):
-        pass
+        def __init__(self, p):
+            self.parsers = p
+
+        def parse(self, lexer, res):
+            p = choose(lexer)
+            if (p is None):
+                raise Exception("Parse Exception")  # ToDo - Dedicated Exception class needed
+            else:
+                res.add(p.parse(lexer))
+
+        def match(self, lexer):
+            return self.choose(lexer) is not None
+
+        def choose(self, lexer):
+            pass
+
+        def insert(self, p):
+            pass
 
     class Repeat(Element):
         pass
