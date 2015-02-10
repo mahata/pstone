@@ -5,14 +5,21 @@ from pstone.token import Token
 
 class Parser(object):
     class Element(object):  # Abstract
-        def parse(lexer, res):
+        def parse(self, lexer, res):
             raise Exception("Abstract method has been called.")
 
-        def match(lexer):
+        def match(self, lexer):
             raise Exception("Abstract method has been called.")
 
     class Tree(Element):
-        pass
+        def __init__(self, p):
+            self.parser = p
+
+        def parse(self, lexer, res):
+            res.add(self.parser(lexer))
+
+        def match(self, lexer):
+            self.parser.match(lexer)
 
     class OrTree(Element):
         pass
