@@ -36,10 +36,14 @@ class Parser(object):
             return self.choose(lexer) is not None
 
         def choose(self, lexer):
-            pass
+            for p self.parsers:
+                if p.match(lexer):
+                    return p
+
+            return None
 
         def insert(self, p):
-            pass
+            self.parsers.insert(0, p)
 
     class Repeat(Element):
         pass
