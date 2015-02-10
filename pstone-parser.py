@@ -20,5 +20,5 @@ if __name__ == "__main__":
     bp = BasicParser()
     while (not lexer.peek(0).isEOF()):
         print("Yo")
-        ast = bp.parse(l)
+        ast = bp.parse(lexer)
         print("=> ", ast)
