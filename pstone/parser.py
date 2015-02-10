@@ -4,6 +4,45 @@ from pstone.token import Token
 
 
 class Parser(object):
+    class Element(object):
+        pass
+
+    class Tree(Element):
+        pass
+
+    class OrTree(Element):
+        pass
+
+    class Repeat(Element):
+        pass
+
+    class AToken(Element):  # Abstract
+        pass
+
+    class IdToken(AToken):
+        pass
+
+    class NumToken(AToken):
+        pass
+
+    class StrToken(AToken):
+        pass
+
+    class Leaf(Element):
+        pass
+
+    class Skip(Leaf):
+        pass
+
+    class Precedence(object):
+        pass
+
+    class Expr(Element):
+        pass
+
+    class Factory(object):  # Abstract
+        pass
+
     def __init__(self):
         pass
 
@@ -71,6 +110,12 @@ class BasicParser(object):
         self.operators.add("*", 4, Operators.LEFT)
         self.operators.add("/", 4, Operators.LEFT)
         self.operators.add("%", 4, Operators.LEFT)
+
+        # self.expr0 = rule()
+        parser = Parser()
+
+    def parse(self, lexer):
+        program.parse(lexer)
 
 
 class Operators(object):
