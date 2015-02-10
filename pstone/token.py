@@ -28,6 +28,9 @@ class Token(object):
     def getText(self):
         return ""
 
+    def isEOF(self):
+        return self.lineNumber == -1
+
 
 class NumToken(Token):
     def isNumber(self):

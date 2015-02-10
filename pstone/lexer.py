@@ -10,18 +10,19 @@ class Lexer(object):
         self.queue = []
         self.source = source
         self.lines = source.split("\n")
+        self.tokenize()
 
     def read(self):
-        if (0 < len(self.lines)):
-            ret = self.lines[0]
-            self.lines = self.lines[1:]
+        if (0 < len(self.queue)):
+            ret = self.queue[0]
+            self.queue = self.queue[1:]
             return ret
         else:
             return token.Token(-1)  # EOF
 
     def peek(self, i):
-        if (i < len(self.lines)):
-            return self.lines[0:i+1]
+        if (i < len(self.queue)):
+            return self.queue[i]
         else:
             return token.Token(-1)  # EOF
 

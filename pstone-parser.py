@@ -18,7 +18,7 @@ if __name__ == "__main__":
 
     lexer = Lexer(snippet)
     bp = BasicParser()
-    while (lexer.peek(0) != token.Token.EOF):
+    while (not lexer.peek(0).isEOF()):
         print("Yo")
         ast = bp.parse(l)
         print("=> ", ast)
