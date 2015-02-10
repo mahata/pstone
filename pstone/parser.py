@@ -4,8 +4,12 @@ from pstone.token import Token
 
 
 class Parser(object):
-    class Element(object):
-        pass
+    class Element(object):  # Abstract
+        def parse(lexer, res):
+            raise Exception("Abstract method has been called.")
+
+        def match(lexer):
+            raise Exception("Abstract method has been called.")
 
     class Tree(Element):
         pass
