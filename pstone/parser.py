@@ -157,8 +157,8 @@ class BasicParser(object):
         self.operators.add("/", 4, Operators.LEFT)
         self.operators.add("%", 4, Operators.LEFT)
 
-        # self.expr0 = rule()
-        parser = Parser()
+        # ToDo: Fix Me
+        # self.program = rule()
 
     def parse(self, lexer):
         program.parse(lexer)

@@ -16,13 +16,15 @@ if __name__ == "__main__":
     #     sum
     # """
 
+    # Parser paren = rule().sep("(").ast(expr).sep(")");
+
     snippet = """
-    Parser paren = rule().sep("(").ast(expr).sep(")");
+    3 + 5
     """
 
     lexer = Lexer(snippet)
     bp = BasicParser()
     while (not lexer.peek(0).isEOF()):
-        # ast = bp.parse(lexer)
+        ast = bp.parse(lexer)
         # print("=> ", ast)
         break
