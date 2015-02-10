@@ -36,7 +36,7 @@ class Parser(object):
             return self.choose(lexer) is not None
 
         def choose(self, lexer):
-            for p self.parsers:
+            for p in self.parsers:
                 if p.match(lexer):
                     return p
 
@@ -62,7 +62,8 @@ class Parser(object):
             return self.parser.match(lexer)
 
     class AToken(Element):  # Abstract
-        pass
+        def __init__(self, t):
+            pass
 
     class IdToken(AToken):
         pass
