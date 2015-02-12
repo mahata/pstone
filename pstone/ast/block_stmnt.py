@@ -3,6 +3,6 @@
 import pstone.ast.ast as ast
 
 
-class BlockStmt(ast.ASTList):
+class BlockStmnt(ast.ASTList):
     def __init__(self, c):
-        super(BlockStmt, self).__init__(c)
+        super(BlockStmnt, self).__init__(c)

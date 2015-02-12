@@ -3,9 +3,9 @@
 import pstone.ast.ast as ast
 
 
-class ClassStmt(ast.ASTList):
+class ClassStmnt(ast.ASTList):
     def __init__(self, c):
-        super(ClassStmt, self).__init__(c)
+        super(ClassStmnt, self).__init__(c)
 
     def name(self):
         return self.child(0).token().getText()
