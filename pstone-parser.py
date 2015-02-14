@@ -18,8 +18,12 @@ if __name__ == "__main__":
 
     # Parser paren = rule().sep("(").ast(expr).sep(")");
 
+    # snippet = """
+    # 3 + 5
+    # """
+
     snippet = """
-    3 + 5
+    3
     """
 
     lexer = Lexer(snippet)

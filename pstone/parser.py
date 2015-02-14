@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from pstone.token import Token
-
+from pstone.ast.ast import ASTree, ASTList, ASTLeaf
 
 class Parser(object):
     class Element(object):  # Abstract
@@ -89,11 +89,23 @@ class Parser(object):
     class Factory(object):  # Abstract
         pass
 
-    def __init__(self):
-        pass
+    def __init__(self, arg):
+        if isinstance(arg, ASTree):
+            self.reset(arg)
+        elif isinstance(arg, Parser):
+            self.elements = arg.elements
+            self.factory = p.factory
+        else:
+            raise Exception("Wrong arguments for __init__ of Parser.")
 
-    def rule(self):
-        pass
+    @staticmethod
+    def rule(*args):
+        # ToDo - Refactor
+        if (len(args) == 0):
+            klass = None
+        else:
+            klass = args[0]
+        return Parser(klass)
 
     def match(self):
         pass
@@ -158,7 +170,7 @@ class BasicParser(object):
         self.operators.add("%", 4, Operators.LEFT)
 
         # ToDo: Fix Me
-        # self.program = rule()
+        self.program = Parser.rule()
 
     def parse(self, lexer):
         program.parse(lexer)
