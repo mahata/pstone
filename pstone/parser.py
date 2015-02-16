@@ -90,13 +90,11 @@ class Parser(object):
         pass
 
     def __init__(self, arg):
-        if isinstance(arg, ASTree):
-            self.reset(arg)
-        elif isinstance(arg, Parser):
+        if isinstance(arg, Parser):
             self.elements = arg.elements
             self.factory = p.factory
-        else:
-            raise Exception("Wrong arguments for __init__ of Parser.")
+        elif isinstance(arg, ASTree):
+            self.reset(arg)
 
     @staticmethod
     def rule(*args):
