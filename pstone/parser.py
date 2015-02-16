@@ -3,6 +3,7 @@
 from pstone.token import Token
 from pstone.ast.ast import ASTree, ASTList, ASTLeaf
 
+
 class Parser(object):
     class Element(object):  # Abstract
         def parse(self, lexer, res):
@@ -96,6 +97,17 @@ class Parser(object):
         elif isinstance(arg, ASTree):
             self.reset(arg)
 
+    def parse(self, lexer):
+        # results = []
+        # for e in self.elements:
+        #     e.parse(lexer, results)
+        #
+        # return self.factory.make(results)
+        pass
+
+    def match(self):
+        pass
+
     @staticmethod
     def rule(*args):
         # ToDo - Refactor
@@ -104,9 +116,6 @@ class Parser(object):
         else:
             klass = args[0]
         return Parser(klass)
-
-    def match(self):
-        pass
 
     def reset(self):
         pass
@@ -171,7 +180,7 @@ class BasicParser(object):
         self.program = Parser.rule()
 
     def parse(self, lexer):
-        program.parse(lexer)
+        self.program.parse(lexer)
 
 
 class Operators(object):
