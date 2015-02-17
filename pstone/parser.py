@@ -94,16 +94,15 @@ class Parser(object):
         if isinstance(arg, Parser):
             self.elements = arg.elements
             self.factory = p.factory
-        elif isinstance(arg, ASTree):
+        else:
             self.reset(arg)
 
     def parse(self, lexer):
-        # results = []
-        # for e in self.elements:
-        #     e.parse(lexer, results)
-        #
-        # return self.factory.make(results)
-        pass
+        results = []
+        for e in self.elements:
+            e.parse(lexer, results)
+
+        return self.factory.make(results)
 
     def match(self):
         pass
