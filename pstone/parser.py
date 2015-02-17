@@ -116,8 +116,12 @@ class Parser(object):
             klass = args[0]
         return Parser(klass)
 
-    def reset(self):
-        pass
+    def reset(self, *args):
+        if (len(args) == 0):  # Empty grammatical rules
+            self.elements = []
+        else:  # Empty grammatical rules and make node's class "args[0]"
+            self.elements = []
+            self.factory = Factory.getForASTList(args[0])
 
     def number(self):
         pass
