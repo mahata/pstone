@@ -1,7 +1,10 @@
 #!/usr/bin/env python
 
+from abc import ABCMeta
 from pstone.token import Token
 from pstone.ast.ast import ASTree, ASTList, ASTLeaf
+
+import sys
 
 
 class Parser(object):
@@ -87,8 +90,21 @@ class Parser(object):
     class Expr(Element):
         pass
 
-    class Factory(object):  # Abstract
-        pass
+    class Factory(metaclass=ABCMeta):  # Abstract
+        @abstractmethod
+        def make0(self, arg):
+            raise Exception("Abstract method has been called.")
+
+        def make(self, arg):
+            try:
+                return self.make0(arg)
+            except Exception:
+                sys.stderr.write("Something weng wrong in make() in Factory")
+                raise Exception("Die for now")
+
+        @staticmethod
+        def getForASTList(klass):
+            pass
 
     def __init__(self, arg):
         if isinstance(arg, Parser):
