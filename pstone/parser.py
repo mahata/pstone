@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from abc import ABCMeta
+from abc import ABCMeta, abstractmethod
 from pstone.token import Token
 from pstone.ast.ast import ASTree, ASTList, ASTLeaf
 
