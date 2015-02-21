@@ -137,7 +137,7 @@ class Parser(object):
             self.elements = []
         else:  # Empty grammatical rules and make node's class "args[0]"
             self.elements = []
-            self.factory = Factory.getForASTList(args[0])
+            self.factory = self.Factory.getForASTList(args[0])
 
     def number(self):
         pass
