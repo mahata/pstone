@@ -11,8 +11,9 @@ class ListLexer(Lexer):
     def __init__(self, input):
         super(ListLexer, self).__init__(input)
 
-    # def get_token_name(self, x):
-    #     return self.TOKEN_NAMES[x]
+    def get_token_name(self, x):
+        # return self.TOKEN_NAMES[x]
+        return Token.TOKEN_NAMES[x]
 
     def next_token(self):
         while self.c != Lexer.EOF:

@@ -30,6 +30,6 @@ class Lexer(metaclass=ABCMeta):
     def next_token(self):
         raise NotImplementedError("next_token() is not implemented.")
 
-    # @abstractmethod
-    # def get_token_name(self, token_kind):
-    #     raise NotImplementedError("get_token_name() is not implemented.")
+    @abstractmethod
+    def get_token_name(self, token_kind):
+        raise NotImplementedError("get_token_name() is not implemented.")
