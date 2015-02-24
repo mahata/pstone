@@ -6,7 +6,7 @@ class Parser(metaclass=ABCMeta):
         self.input = input
         self.consume()  # set self.lookahead
 
-    def match(x):
+    def match(self, x):
         if self.lookahead.kind == x:
             self.consume()
         else:
