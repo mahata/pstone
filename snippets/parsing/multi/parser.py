@@ -15,8 +15,14 @@ class Parser(metaclass=ABCMeta):
         self.lookahead[self.p] = self.input.next_token()
         self.p = (p + 1) % self.k
 
+    def LT(self, i):  # Return Token object
+        return self.lookahead[(self.p + i - 1) % self.k]
+
+    def LA(self, i):  # Is it needed actually?
+        return self.LT(i).type
+
     def match(self, x):
-        if self.lookahead.kind == x:
-            self.consume()
+        if self.LA(1) == x:
+            consume()
         else:
-            raise Exception("exception %s; %s" % (self.input.get_token_name(x), self.lookahead))
+            raise Exception("expecting %s; found %s" % (self.input.get_token_name(x), self.LT(1)))

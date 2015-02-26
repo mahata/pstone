@@ -1,5 +1,5 @@
 from parser import Parser
-from listlexer import ListLexer
+from lookaheadlexer import LookaheadLexer
 
 
 class LookaheadParser(Parser):
@@ -15,15 +15,19 @@ class LookaheadParser(Parser):
     # elements : element ("," element)*
     def elements(self):
         self.element()
-        # while self.lookahead.kind == LookaheadLexer.COMMA:
-        #     self.match(LookaheadLexer.COMMA)
-        #     self.element()
+        while self.LA(1) == LookaheadLexer.COMMA:
+            self.match(LookaheadLexer.COMMA)
+            self.element()
 
     # element : NAME "=" NAME | NAME | list
     def element(self):
-        if self.lookahead.kind == LookaheadLexer.NAME:
+        if self.LA(1) == LookaheadLexer.NAME and self.LA(2) == LookaheadLexer.EQUALS:
             self.match(LookaheadLexer.NAME)
-        elif self.lookahead.kind == LookaheadLexer.LBRACK:
+            self.match(LookaheadLexer.EQUALS)
+            self.match(LookaheadLexer.NAME)
+        elif self.LA(1) == LookaheadLexer.NAME:
+            self.match(LookaheadLexer.NAME)
+        elif self.LA(1) == LookaheadLexer.LBrack:
             self.list()
         else:
-            raise Exception("expecting name or list; found %s" % (self.lookahead))
+            raise Exception("expecting name or list; found " + self.LT(1))
