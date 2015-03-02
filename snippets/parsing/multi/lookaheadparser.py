@@ -27,7 +27,7 @@ class LookaheadParser(Parser):
             self.match(LookaheadLexer.NAME)
         elif self.LA(1) == LookaheadLexer.NAME:
             self.match(LookaheadLexer.NAME)
-        elif self.LA(1) == LookaheadLexer.LBrack:
+        elif self.LA(1) == LookaheadLexer.LBRACK:
             self.list()
         else:
             raise Exception("expecting name or list; found " + self.LT(1))
