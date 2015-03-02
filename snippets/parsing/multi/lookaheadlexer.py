@@ -2,14 +2,15 @@ from lexer import Lexer
 from token import Token
 
 
-class ListLexer(Lexer):
+class LookaheadLexer(Lexer):
     NAME = 2
     COMMA = 3
     LBRACK = 4
     RBRACK = 5
+    EQUALS = 6
 
     def __init__(self, input):
-        super(ListLexer, self).__init__(input)
+        super(LookaheadLexer, self).__init__(input)
 
     def get_token_name(self, x):
         # return self.TOKEN_NAMES[x]
@@ -29,6 +30,9 @@ class ListLexer(Lexer):
             elif self.c == "]":
                 self.consume()
                 return Token(self.RBRACK, "]")
+            elif self.c == "=":
+                self.consume()
+                return Token(self.EQUALS, "=")
             else:
                 if self.c.isalpha():
                     return self._name()

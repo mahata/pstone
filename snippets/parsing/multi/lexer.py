@@ -16,7 +16,7 @@ class Lexer(metaclass=ABCMeta):
     # Move to next non-whitespace character
     def consume(self):
         self.advance()
-        self.ws()
+        self._ws()
 
     # Move one character
     def advance(self):
@@ -24,7 +24,7 @@ class Lexer(metaclass=ABCMeta):
         if len(self.input) <= self.i:
             self.c = self.EOF
         else:
-            self.c = self.input[i]
+            self.c = self.input[self.i]
 
     # Ensure x is next character on the input stream
     def match(x):
@@ -42,5 +42,5 @@ class Lexer(metaclass=ABCMeta):
         raise NotImplementedError("get_token_name() is not implemented.")
 
     @abstractmethod
-    def ws():
+    def _ws():
         raise NotImplementedError("ws() is not implemented.")

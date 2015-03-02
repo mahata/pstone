@@ -1,5 +1,5 @@
 class Token(object):
-    TOKEN_NAMES = ["n/a", "<EOF>", "NAME", "COMMA", "LBRACK", "RBRACK"]
+    TOKEN_NAMES = ["n/a", "<EOF>", "NAME", "COMMA", "LBRACK", "RBRACK", "EQUALS"]
 
     def __init__(self, kind, text):
         self.kind = kind
