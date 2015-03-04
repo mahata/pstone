@@ -3,34 +3,29 @@ from token import Token
 
 
 class ListLexer(Lexer):
-    NAME = 2
-    COMMA = 3
-    LBRACK = 4
-    RBRACK = 5
-
     def __init__(self, input):
         super(ListLexer, self).__init__(input)
 
     def next_token(self):
-        while self.c != Lexer.EOF:
+        while self.c != "\0":
             if self.c == " " or self.c == "\t" or self.c == "\n" or self.c == "\r":
                 self._ws()
                 continue
             elif self.c == ",":
                 self.consume()
-                return Token(self.COMMA, ",")
+                return Token(Token.COMMA, ",")
             elif self.c == "[":
                 self.consume()
-                return Token(self.LBRACK, "[")
+                return Token(Token.LBRACK, "[")
             elif self.c == "]":
                 self.consume()
-                return Token(self.RBRACK, "]")
+                return Token(Token.RBRACK, "]")
             else:
                 if self.c.isalpha():
                     return self._name()
                 raise Exception("invalid character: %s" % (self.c))
 
-        return Token(self.EOF_KIND, "<EOF>")
+        return Token(Token.EOF, "<EOF>")
 
     def _name(self):
         buf = []
@@ -40,7 +35,7 @@ class ListLexer(Lexer):
             if not self.c.isalpha():
                 break
 
-        return Token(self.NAME, "".join(buf))
+        return Token(Token.NAME, "".join(buf))
 
     def _ws(self):
         while self.c == " " or self.c == "\t" or self.c == "\n" or self.c == "\r":

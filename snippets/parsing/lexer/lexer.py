@@ -2,9 +2,6 @@ from abc import ABCMeta, abstractmethod
 
 
 class Lexer(metaclass=ABCMeta):
-    EOF = "\0"
-    EOF_KIND = 1
-
     def __init__(self, input):
         """
         input: str
@@ -16,7 +13,7 @@ class Lexer(metaclass=ABCMeta):
     def consume(self):
         self.p += 1
         if len(self.input) <= self.p:
-            self.c = self.EOF
+            self.c = "\0"  # EOF
         else:
             self.c = self.input[self.p]
 

@@ -1,4 +1,9 @@
 class Token(object):
+    EOF = 1
+    NAME = 2
+    COMMA = 3
+    LBRACK = 4
+    RBRACK = 5
     TOKEN_NAMES = ["n/a", "<EOF>", "NAME", "COMMA", "LBRACK", "RBRACK"]
 
     def __init__(self, kind, text):
