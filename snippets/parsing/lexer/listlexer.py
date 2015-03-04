@@ -11,9 +11,6 @@ class ListLexer(Lexer):
     def __init__(self, input):
         super(ListLexer, self).__init__(input)
 
-    # def get_token_name(self, x):
-    #     return self.TOKEN_NAMES[x]
-
     def next_token(self):
         while self.c != Lexer.EOF:
             if self.c == " " or self.c == "\t" or self.c == "\n" or self.c == "\r":
