@@ -17,12 +17,6 @@ class Lexer(metaclass=ABCMeta):
         else:
             self.c = self.input[self.p]
 
-    def match(x):
-        if self.c == x:
-            self.consume()
-        else:
-            raise Error("expecting %s; found %s" % (x, self.c))
-
     @abstractmethod
     def next_token(self):
         raise NotImplementedError("next_token() is not implemented.")
